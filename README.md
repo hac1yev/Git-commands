@@ -222,3 +222,46 @@ Team uses same branch
 Production fixes
 
 ✔ safest undo method
+
+
+🔄 git restore
+
+This command is used to discard local changes in a file and restore it to the last committed state.
+
+🧹 What git restore actually does
+
+git restore is used to replace files in your working directory or staging area with content from a specific source (usually HEAD, but not only).
+
+📌 1. Most common use: undo UNCOMMITTED changes
+🧠 Scenario:
+
+You changed a file but didn’t commit:
+
+git restore app.js
+✔ Result:
+Removes local (uncommitted) edits
+Restores last committed version (HEAD)
+
+👉 This is what people usually mean by “undo changes”
+
+📌 2. Undo staged changes (very important)
+
+If you already did:
+
+git add app.js
+
+Then:
+
+git restore --staged app.js
+✔ Result:
+File is removed from staging
+Your edits are still in working directory
+📌 3. Restore from a specific commit (not just HEAD)
+
+You can also restore from history:
+
+git restore --source=HEAD~2 app.js
+✔ Result:
+File becomes version from 2 commits ago
+
+👉 So it’s NOT limited to uncommitted changes
