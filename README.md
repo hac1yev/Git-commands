@@ -22,6 +22,29 @@ When you created a "feature" branch, but "main" moved forward and you want your 
 "git rebase --continue" commands.
 
 
+🧠 If you want to combine (squash) the last 5 commits into 1, use interactive rebase:
+
+git rebase -i HEAD~5
+
+🔹 You’ll see something like:
+pick a1 commit 1
+pick b2 commit 2
+pick c3 commit 3
+pick d4 commit 4
+pick e5 commit 5
+
+🔹 Change it to:
+pick a1 commit 1
+squash b2 commit 2
+squash c3 commit 3
+squash d4 commit 4
+squash e5 commit 5
+
+Then: Esc + :wq + Enter
+
+After this: git push --force
+
+
 
 🔀 Git Merge vs Rebase
 
@@ -115,3 +138,21 @@ conflicts
 duplicated commits
 messy history
 force sync issues
+
+
+
+🔹 git fetch — what it does
+
+git fetch downloads the latest changes from the remote repository (like origin) but does NOT merge them into your current branch.
+
+
+After this:
+
+Your local repo gets updated info about remote branches
+Your current branch stays exactly the same
+Changes are stored in something like: origin/main, origin/branch1
+
+| Command     | What it does                            |
+| ----------- | --------------------------------------- |
+| `git fetch` | Download changes only                   |
+| `git pull`  | "git fetch" + "git merge" automatically |
