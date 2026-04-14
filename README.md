@@ -22,6 +22,29 @@ When you created a "feature" branch, but "main" moved forward and you want your 
 "git rebase --continue" commands.
 
 
+🧠 If you want to combine (squash) the last 5 commits into 1, use interactive rebase:
+
+git rebase -i HEAD~5
+
+🔹 You’ll see something like:
+pick a1 commit 1
+pick b2 commit 2
+pick c3 commit 3
+pick d4 commit 4
+pick e5 commit 5
+
+🔹 Change it to:
+pick a1 commit 1
+squash b2 commit 2
+squash c3 commit 3
+squash d4 commit 4
+squash e5 commit 5
+
+Then: Esc + :wq + Enter
+
+After this: git push --force
+
+
 
 🔀 Git Merge vs Rebase
 
