@@ -115,3 +115,21 @@ conflicts
 duplicated commits
 messy history
 force sync issues
+
+
+
+🔹 git fetch — what it does
+
+git fetch downloads the latest changes from the remote repository (like origin) but does NOT merge them into your current branch.
+
+
+After this:
+
+Your local repo gets updated info about remote branches
+Your current branch stays exactly the same
+Changes are stored in something like: origin/main, origin/branch1
+
+| Command     | What it does                            |
+| ----------- | --------------------------------------- |
+| `git fetch` | Download changes only                   |
+| `git pull`  | "git fetch" + "git merge" automatically |
