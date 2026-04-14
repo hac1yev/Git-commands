@@ -156,3 +156,112 @@ Changes are stored in something like: origin/main, origin/branch1
 | ----------- | --------------------------------------- |
 | `git fetch` | Download changes only                   |
 | `git pull`  | "git fetch" + "git merge" automatically |
+
+
+
+🔵 git log --oneline --branches --not --remotes
+
+If this command shows you your commits that means you have not push these commits to your remote branch.
+If nothings appears that means you have pushed commits to your remote branch.
+
+
+If nothing appers and you want to undo your commits you have to use: 
+🔹"git revert"
+
+If this command shows you your commits and you want to undo those commits you can use:
+🔹"git reset"
+
+
+↩️ git reset (move HEAD / undo commits locally)
+🧠 Scenario:
+
+You committed something wrong:
+
+A --- B --- C (bad commit)
+🔹 Soft reset (keep changes staged)
+git reset --soft HEAD~1
+
+✔ commit removed
+✔ changes still staged
+
+🔹 Mixed reset (default)
+git reset HEAD~1
+
+✔ commit removed
+✔ changes stay in working directory
+
+If you want to undo content that you wrote in code you must right after use:
+git checkout .
+
+🔹 Hard reset (danger)
+git reset --hard HEAD~1
+
+❌ removes commit + changes completely
+
+💡 Use when:
+Fix local commits before push
+Clean history
+
+
+🔄 git revert (safe undo for shared branches)
+🧠 Scenario:
+
+You already pushed a bad commit:
+
+A --- B --- C (bad commit)
+✅ Command:
+git revert C
+📊 Result:
+A --- B --- C --- C'
+
+(C' is inverse of C)
+
+💡 Use when:
+Commit is already pushed
+Team uses same branch
+Production fixes
+
+✔ safest undo method
+
+
+🔄 git restore
+
+This command is used to discard local changes in a file and restore it to the last committed state.
+
+🧹 What git restore actually does
+
+git restore is used to replace files in your working directory or staging area with content from a specific source (usually HEAD, but not only).
+
+📌 1. Most common use: undo UNCOMMITTED changes
+🧠 Scenario:
+
+You changed a file but didn’t commit:
+
+git restore app.js
+✔ Result:
+Removes local (uncommitted) edits
+Restores last committed version (HEAD)
+
+👉 This is what people usually mean by “undo changes”
+
+📌 2. Undo staged changes (very important)
+
+If you already did:
+
+git add app.js
+
+Then:
+
+git restore --staged app.js
+✔ Result:
+File is removed from staging
+Your edits are still in working directory
+📌 3. Restore from a specific commit (not just HEAD)
+
+You can also restore from history:
+
+git restore --source=HEAD~2 app.js
+✔ Result:
+File becomes version from 2 commits ago
+
+👉 So it’s NOT limited to uncommitted changes
