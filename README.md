@@ -156,3 +156,66 @@ Changes are stored in something like: origin/main, origin/branch1
 | ----------- | --------------------------------------- |
 | `git fetch` | Download changes only                   |
 | `git pull`  | "git fetch" + "git merge" automatically |
+
+
+
+🔵 git log --oneline --branches --not --remotes
+
+If this command shows you your commits that means you have not push these commits to your remote branch.
+If nothings appears that means you have pushed commits to your remote branch.
+
+
+If nothing appers and you want to undo your commits you have to use: 
+🔹"git revert"
+
+If this command shows you your commits and you want to undo those commits you can use:
+🔹"git reset"
+
+
+↩️ git reset (move HEAD / undo commits locally)
+🧠 Scenario:
+
+You committed something wrong:
+
+A --- B --- C (bad commit)
+🔹 Soft reset (keep changes staged)
+git reset --soft HEAD~1
+
+✔ commit removed
+✔ changes still staged
+
+🔹 Mixed reset (default)
+git reset HEAD~1
+
+✔ commit removed
+✔ changes stay in working directory
+
+🔹 Hard reset (danger)
+git reset --hard HEAD~1
+
+❌ removes commit + changes completely
+
+💡 Use when:
+Fix local commits before push
+Clean history
+
+
+🔄 git revert (safe undo for shared branches)
+🧠 Scenario:
+
+You already pushed a bad commit:
+
+A --- B --- C (bad commit)
+✅ Command:
+git revert C
+📊 Result:
+A --- B --- C --- C'
+
+(C' is inverse of C)
+
+💡 Use when:
+Commit is already pushed
+Team uses same branch
+Production fixes
+
+✔ safest undo method
