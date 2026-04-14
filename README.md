@@ -190,6 +190,9 @@ git reset HEAD~1
 ✔ commit removed
 ✔ changes stay in working directory
 
+If you want to undo content that you wrote in code you must right after use:
+git checkout .
+
 🔹 Hard reset (danger)
 git reset --hard HEAD~1
 
